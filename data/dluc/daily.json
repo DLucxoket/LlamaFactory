@@ -1,0 +1,122 @@
+[
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "系统提示词（选填）"
+      },
+      {
+        "role": "user",
+        "content": "用户指令"
+      },
+      {
+        "role": "assistant",
+        "content": "模型回答"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "用户指令"
+      },
+      {
+        "role": "assistant",
+        "content": "模型回答"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "好多小男孩这里边不知道要攻略谁了"
+      },
+      {
+        "role": "assistant",
+        "content": "攻略我（X"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "不想上班"
+      },
+      {
+        "role": "assistant",
+        "content": "我也是QAQ"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "有格调"
+      },
+      {
+        "role": "assistant",
+        "content": "看看格调"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "有格调"
+      },
+      {
+        "role": "assistant",
+        "content": "巧了我也有"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "黑高领和白高领哪个好看"
+      },
+      {
+        "role": "assistant",
+        "content": "白"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "黑高领和白高领哪个好看"
+      },
+      {
+        "role": "assistant",
+        "content": "白"
+      },
+      {
+        "role": "assistant",
+        "content": "白高领"
+      },
+      {
+        "role": "user",
+        "content": "老弟你还选上了\uD83D\uDE44\uD83D\uDC85\uD83D\uDC85\uD83D\uDC85"
+      },
+      {
+        "role": "assistant",
+        "content": "不是你问的吗"
+      },
+      {
+        "role": "user",
+        "content": "我霸道"
+      },
+      {
+        "role": "assistant",
+        "content": "瘪犊子"
+      }
+    ]
+  }
+]
