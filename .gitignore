@@ -181,3 +181,9 @@ wandb/
 swanlog/
 generated_predictions.jsonl
 predictions_score.json
+
+# runtime caches
+data/processed/
+gradio/
+unsloth_compiled_cache/
+.uv-cache/
