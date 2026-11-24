@@ -1,4 +1,12 @@
 {
+  "lucatbot_": {
+    "file_name": "dluc/lucatbot/sft.json",
+    "columns": {
+      "prompt": "instruction",
+      "response": "output",
+      "system": "system"
+    }
+  },
   "lucatbot": {
     "file_name": "dluc/lucatbot.json",
     "columns": {
@@ -15,8 +23,16 @@
       "system": "system"
     }
   },
+  "lucatbot3": {
+    "file_name": "dluc/lucatbot3.json",
+    "columns": {
+      "prompt": "instruction",
+      "response": "output",
+      "system": "system"
+    }
+  },
   "lucatbot_ranking": {
-    "file_name": "dluc/lucatbot_ranking.json",
+    "file_name": "dluc/lucatbot/ranking.json",
     "ranking": true,
     "columns": {
       "prompt": "instruction",
@@ -27,6 +43,20 @@
   },
   "from_qq": {
     "file_name": "dluc/from_qq.json",
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "messages"
+    },
+    "tags": {
+      "role_tag": "role",
+      "content_tag": "content",
+      "user_tag": "user",
+      "assistant_tag": "assistant",
+      "system_tag": "system"
+    }
+  },
+  "daily": {
+    "file_name": "dluc/daily.json",
     "formatting": "sharegpt",
     "columns": {
       "messages": "messages"
