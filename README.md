@@ -12,6 +12,7 @@
 [![Discord](assets/thirdparty/discord.svg)](https://discord.gg/rKfvV9r9FK)
 [![WeChat](https://img.shields.io/badge/WeChat-User%20Group-blue?logo=wechat)](https://github.com/hiyouga/llamafactory-community)
 [![Blog](https://img.shields.io/badge/Hugo-Official%20Blog-blue?logo=hugo)](https://blog.llamafactory.net/en/)
+[![GitCode](https://gitcode.com/hiyouga/LlamaFactory/star/badge.svg)](https://gitcode.com/hiyouga/LlamaFactory)
 
 [![Open in Colab](assets/thirdparty/colab.svg)](https://colab.research.google.com/drive/1eRTPn37ltBbYsISy9Aw2NuI2Aq5CQrD9?usp=sharing)
 [![Open in DSW](assets/thirdparty/dsw.svg)](https://gallery.pai-ml.com/#/preview/deepLearning/nlp/llama_factory)
@@ -300,9 +301,13 @@ Read technical notes:
 | [GPT-OSS](https://huggingface.co/openai)                          | 20B/120B                         | gpt_oss              |
 | [Granite 3-4](https://huggingface.co/ibm-granite)                 | 1B/2B/3B/7B/8B                   | granite3/granite4    |
 | [Hunyuan/Hunyuan1.5 (MT)](https://huggingface.co/tencent/)        | 0.5B/1.8B/4B/7B/13B              | hunyuan/hunyuan_small|
+| [InCoder-32B](https://huggingface.co/Multilingual-Multimodal-NLP/IndustrialCoder) | 32B                              | Tokenizer template (v1) |
+| [InCoder-32B-Thinking](https://huggingface.co/Multilingual-Multimodal-NLP/IndustrialCoder-Thinking) | 32B                              | Tokenizer template (v1) |
 | [InternLM 2-3](https://huggingface.co/internlm)                   | 7B/8B/20B                        | intern2              |
 | [InternVL 2.5-3.5](https://huggingface.co/OpenGVLab)              | 1B/2B/4B/8B/14B/30B/38B/78B/241B | intern_vl            |
 | [Intern-S1-mini](https://huggingface.co/internlm/)                | 8B                               | intern_s1            |
+| [IQuest-Coder (V1 Instruct/Thinking)](https://huggingface.co/collections/IQuestLab/iquest-coder) | 7B/14B/40B                       | Tokenizer template (v1) |
+| [IQuest-Q1](https://huggingface.co/IQuestLab/IQuest-Q1)           | 320B-A15B                        | [Upstream template](https://huggingface.co/IQuestLab/IQuest-Q1/blob/main/chat_template.jinja) (fine-tuning unverified) |
 | [Kimi-VL](https://huggingface.co/moonshotai)                      | 16B                              | kimi_vl              |
 | [Ling 2.0 (mini/flash)](https://huggingface.co/inclusionAI)       | 16B/100B                         | bailing_v2           |
 | [LFM 2.5 (VL)](https://huggingface.co/LiquidAI)                   | 1.2B/1.6B                        | lfm2/lfm2_vl         |
@@ -330,6 +335,7 @@ Read technical notes:
 | [Qwen3 (MoE/Instruct/Thinking/Next)](https://huggingface.co/Qwen) | 0.6B/1.7B/4B/8B/14B/32B/80B/235B | qwen3/qwen3_nothink  |
 | [Qwen3.5](https://huggingface.co/Qwen)                            | 0.8B/2B/4B/9B/27B/35B/122B/397B  | qwen3_5/qwen3_5_nothink              |
 | [Qwen3.6](https://huggingface.co/Qwen)                            | 27B/35B                          | qwen3_6              |
+| [Qwen3.8](https://huggingface.co/Qwen)                            | 27B/2.4T                         | qwen3_8              |
 | [Qwen2-Audio](https://huggingface.co/Qwen)                        | 7B                               | qwen2_audio          |
 | [Qwen2.5-Omni](https://huggingface.co/Qwen)                       | 3B/7B                            | qwen2_omni           |
 | [Qwen3-Omni](https://huggingface.co/Qwen)                         | 30B                              | qwen3_omni           |
@@ -418,7 +424,7 @@ You also can add a custom chat template to [template.py](src/llamafactory/data/t
 - [SlimOrca (en)](https://huggingface.co/datasets/Open-Orca/SlimOrca)
 - [MathInstruct (en)](https://huggingface.co/datasets/TIGER-Lab/MathInstruct)
 - [Firefly 1.1M (zh)](https://huggingface.co/datasets/YeungNLP/firefly-train-1.1M)
-- [Wiki QA (en)](https://huggingface.co/datasets/wiki_qa)
+- [Wiki QA (en)](https://huggingface.co/datasets/microsoft/wiki_qa)
 - [Web QA (zh)](https://huggingface.co/datasets/suolyer/webqa)
 - [WebNovel (zh)](https://huggingface.co/datasets/zxbsmk/webnovel_cn)
 - [Nectar (en)](https://huggingface.co/datasets/berkeley-nest/Nectar)
@@ -473,11 +479,10 @@ You also can add a custom chat template to [template.py](src/llamafactory/data/t
 
 </details>
 
-Some datasets require confirmation before using them, so we recommend logging in with your Hugging Face account using these commands.
+Some datasets require confirmation before using them. After installing LlamaFactory, we recommend logging in with your Hugging Face account using this command.
 
 ```bash
-pip install "huggingface_hub<1.0.0"
-huggingface-cli login
+hf auth login
 ```
 
 ## Requirement
@@ -570,11 +575,21 @@ python -c "import torch; print(torch.cuda.is_available())"
 
 If you see `True` then you have successfully installed PyTorch with CUDA support.
 
+For AMD ROCm users, install PyTorch from [AMD's TheRock index](https://github.com/ROCm/TheRock/blob/main/RELEASES.md) instead. Replace `gfx1201` with the target of your GPU, which `rocm-bootstrap-detect` prints (install it with `pip install rocm-bootstrap`), or look it up in the [GFX target table](https://github.com/ROCm/TheRock/blob/main/RELEASES.md#gfx-target-lookup-table):
+
+```bash
+pip uninstall torch torchvision torchaudio
+pip install --index-url https://stable.repo.amd.com/rocm/whl-next/ "torch[device-gfx1201]" "torchvision[device-gfx1201]" torchaudio
+python -c "import torch; print(torch.cuda.is_available(), torch.version.hip)"
+```
+
+The ROCm build uses the same `torch.cuda` API, so `True` means the GPU is usable. On `gfx1101`, `gfx1102`, `gfx1150`, `gfx1151` and `gfx1200`, PyTorch only enables the AOTriton flash and memory-efficient SDPA backends with `set TORCH_ROCM_AOTRITON_ENABLE_EXPERIMENTAL=1`. Without it, `scaled_dot_product_attention` on these GPUs falls back to the math backend, which is much slower and uses far more memory.
+
 Try `dataloader_num_workers: 0` if you encounter `Can't pickle local object` error.
 
 #### Install BitsAndBytes
 
-To enable Quantized LoRA (QLoRA) on Windows, you need to install bitsandbytes.
+To enable Quantized LoRA (QLoRA) on Windows, you need to install bitsandbytes. Official releases since 0.50.2 include ROCm builds for Windows as well, so the same package works on AMD GPUs.
 
 For most users, it is recommended to install the latest official release:
 
